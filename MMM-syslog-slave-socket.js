@@ -27,7 +27,8 @@
  *
  * @see https://github.com/MichMich/MagicMirror/blob/master/js/socketclient.js
  */
-const MMM_syslog_slave_socket = function(moduleName, master) { // eslint-disable-line camelcase, no-unused-vars
+// eslint-disable-next-line camelcase, no-unused-vars, func-names
+const MMM_syslog_slave_socket = function (moduleName, master) {
     if (typeof moduleName !== 'string') {
         throw new Error('Please set the module name for the MMM_syslog_slave_socket.');
     }
@@ -40,7 +41,7 @@ const MMM_syslog_slave_socket = function(moduleName, master) { // eslint-disable
     let notificationCallback = () => {};
 
     const onevent = this.socket.onevent;
-    this.socket.onevent = function (packet) {
+    this.socket.onevent = function (packet) { // eslint-disable-line func-names
         const args = packet.data || [];
         onevent.call(this, packet); // original call
         packet.data = ['*'].concat(args); // eslint-disable-line no-param-reassign
