@@ -203,6 +203,13 @@ Module.register('MMM-syslog-slave', {
         return wrapper;
     },
 
+    /**
+     * @function setTypeClass
+     * @description Sets css class based on message type to element.
+     *
+     * @param {string} type - Message type
+     * @param {Element} element - Element to set class to.
+     */
     setTypeClass(type, element) {
         if (Object.prototype.hasOwnProperty.call(this.config.types, type)) {
             element.classList.add(this.config.types[type]);
