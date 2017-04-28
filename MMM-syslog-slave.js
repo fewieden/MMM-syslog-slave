@@ -170,9 +170,7 @@ Module.register('MMM-syslog-slave', {
             } else {
                 icon.classList.add('fa', 'fa-fw', 'fa-question');
             }
-            if (Object.prototype.hasOwnProperty.call(this.config.types, this.messages[i].type)) {
-                icon.classList.add(this.config.types[this.messages[i].type]);
-            }
+            this.setTypeClass(this.messages[i].type, icon);
 
             iconCell.classList.add('small');
 
@@ -187,9 +185,7 @@ Module.register('MMM-syslog-slave', {
             const caller = document.createElement('td');
             caller.innerHTML = ` ${message}`;
             caller.classList.add('title', 'small', 'align-left');
-            if (Object.prototype.hasOwnProperty.call(this.config.types, this.messages[i].type)) {
-                caller.classList.add(this.config.types[this.messages[i].type]);
-            }
+            this.setTypeClass(this.messages[i].type, caller);
             callWrapper.appendChild(caller);
 
             // Set time of row
@@ -205,6 +201,12 @@ Module.register('MMM-syslog-slave', {
         }
         wrapper.appendChild(logs);
         return wrapper;
+    },
+
+    setTypeClass(type, element) {
+        if (Object.prototype.hasOwnProperty.call(this.config.types, type)) {
+            element.classList.add(this.config.types[type]);
+        }
     },
 
     /**

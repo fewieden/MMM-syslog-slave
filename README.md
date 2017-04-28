@@ -29,6 +29,7 @@ MMM-syslog slave that gets the same notifications as the master, which can be fi
     ```
 
 ## Config Options
+
 | **Option** | **Default** | **Description** |
 | --- | --- | --- |
 | `master` | `required` | Web address of your master in the format `http://ip:port`. |
@@ -41,6 +42,7 @@ MMM-syslog slave that gets the same notifications as the master, which can be fi
 | `blacklist` | `[]` | List of types that should not be shown. `["INFO", "WARNING"]`|
 
 ## How to Use
+
 Make an http get request like:
 `http://MASTER_IP:MASTER_PORT/syslog?type=INFO&message=YOUR_MESSAGE`
 
