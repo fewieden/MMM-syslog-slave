@@ -60,6 +60,7 @@ Module.register('MMM-syslog-slave', {
      * @property {Object.<string, string>} icons - Fontawesome icons for specified types
      * {@link http://fontawesome.io/icons/}.
      * @property {boolean|int} shortenMessage - Maximum amount of characters shown in UI.
+     * @property {string[]} blacklist - List of types that should not be shown.
      */
     defaults: {
         max: 5,
@@ -74,7 +75,8 @@ Module.register('MMM-syslog-slave', {
             WARNING: 'exclamation',
             ERROR: 'exclamation-triangle'
         },
-        shortenMessage: false
+        shortenMessage: false,
+        blacklist: []
     },
 
     /**
@@ -125,14 +127,16 @@ Module.register('MMM-syslog-slave', {
      */
     socketNotificationReceived(notification, payload) {
         if (notification === 'NEW_MESSAGE') {
-            this.sendNotification('SHOW_ALERT', { type: 'notification', title: payload.type, message: payload.message });
-            this.messages.push(payload);
+            if (!this.config.blacklist.includes(payload.type)) {
+                this.sendNotification('SHOW_ALERT', { type: 'notification', title: payload.type, message: payload.message });
+                this.messages.push(payload);
 
-            while (this.messages.length > this.config.max) {
-                this.messages.shift();
+                while (this.messages.length > this.config.max) {
+                    this.messages.shift();
+                }
+
+                this.updateDom(3000);
             }
-
-            this.updateDom(3000);
         }
     },
 
