@@ -1,0 +1,29 @@
+{
+  "name": "mmm-syslog-slave",
+  "version": "1.0.0",
+  "description": "Syslog slave that gets the same notifications as the master.",
+  "scripts": {
+    "lint": "./node_modules/.bin/eslint .",
+    "docs": "./node_modules/.bin/jsdoc -c jsdoc.json ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fewieden/MMM-syslog-slave.git"
+  },
+  "keywords": [
+    "MagicMirror",
+    "logging"
+  ],
+  "author": "fewieden",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/fewieden/MMM-syslog-slave/issues"
+  },
+  "homepage": "https://github.com/fewieden/MMM-syslog-slave#readme",
+  "devDependencies": {
+    "eslint": "^3.14.1",
+    "eslint-config-airbnb-base": "^11.0.1",
+    "eslint-plugin-import": "^2.2.0",
+    "jsdoc": "^3.4.3"
+  }
+}
